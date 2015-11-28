@@ -1,20 +1,30 @@
 var express = require('express');
 var app = express();
 
+var myLogger = function(req, res, next) {
+  console.log('Logged');
+  next();
+};
+var requestTime = function(req, res, next) {
+  req.requestTime = Date.now();
+  next();
+};
+app.set('view engine', 'jade');
+app.use(requestTime);
+app.use(myLogger);
+
 app.get('/', function(req, res) { //req == request from browser, res = =response from server
-  res.send('Hello World!');
+  res.render('index', {
+    title: 'Hey',
+    message: 'Hello There!'
+  });
 });
-
-app.post('/', function(req, res) {
-  res.send('Got a post');
-});
-
-app.put('/user', function (req, res) {
-  res.send('got a PUT request at /user');
-});
-
-app.delete('/user', function(req, res){
-  res.send('Got a delete request at /user');
+app.get('/about', function(req, res) { //req == request from browser, res = =response from server
+    res.render('/test', {
+    title: 'Hey | About',
+    message: 'About | Hello There!'
+  });
+  //res.send('about');
 });
 
 var server = app.listen(3000, function(){

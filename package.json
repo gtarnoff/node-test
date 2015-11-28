@@ -2,7 +2,7 @@
   "name": "node",
   "version": "1.0.0",
   "description": "node experiment project",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "test"
   },
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/gtarnoff/node-test#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
   }
 }
